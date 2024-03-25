@@ -4,6 +4,20 @@ plugins {
 }
 
 android {
+    signingConfigs {
+        getByName("debug") {
+            storeFile = file("/Users/ruiqing.piao/Documents/KeyStore/debug_sign.keystore")
+            storePassword = "debug123456"
+            keyPassword = "debug123456"
+            keyAlias = "debug_sign.keystore"
+        }
+        create("release") {
+            storeFile = file("/Users/ruiqing.piao/Documents/KeyStore/release_sign.keystore")
+            storePassword = "release123456"
+            keyAlias = "release_sign.keystore"
+            keyPassword = "release123456"
+        }
+    }
     namespace = "com.thoughtworks.androidtrain"
     compileSdk = 34
 
