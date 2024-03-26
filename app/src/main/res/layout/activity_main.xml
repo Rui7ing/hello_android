@@ -23,30 +23,32 @@
             android:id="@+id/button1"
             android:layout_width="210dp"
             android:layout_height="wrap_content"
-            android:backgroundTint="@color/gray"
-            android:text="button 1"
-            android:textColor="@color/black"
             android:layout_margin="10dp"
+            android:backgroundTint="@color/gray"
+            android:text="@string/button_1"
+            android:textColor="@color/black"
             tools:layout_editor_absoluteX="160dp"
             tools:layout_editor_absoluteY="74dp" />
+
         <Button
             android:id="@+id/button2"
             android:layout_width="210dp"
             android:layout_height="wrap_content"
-            android:backgroundTint="@color/gray"
-            android:text="button 2"
-            android:textColor="@color/black"
             android:layout_margin="10dp"
+            android:backgroundTint="@color/gray"
+            android:text="@string/button_2"
+            android:textColor="@color/black"
             tools:layout_editor_absoluteX="160dp"
             tools:layout_editor_absoluteY="74dp" />
+
         <Button
             android:id="@+id/button3"
             android:layout_width="210dp"
             android:layout_height="wrap_content"
-            android:backgroundTint="@color/gray"
-            android:text="button 3"
-            android:textColor="@color/black"
             android:layout_margin="10dp"
+            android:backgroundTint="@color/gray"
+            android:text="@string/button_3"
+            android:textColor="@color/black"
             tools:layout_editor_absoluteX="160dp"
             tools:layout_editor_absoluteY="74dp" />
     </LinearLayout>
