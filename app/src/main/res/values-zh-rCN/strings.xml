@@ -12,4 +12,12 @@
     <string name="button_8">按钮 8</string>
     <string name="button_9">按钮 9</string>
     <string name="button_10">按钮 10</string>
+    <string name="developer">程序员</string>
+    <string name="developerCheerleaders">程序员鼓励师</string>
+    <string name="center">中间</string>
+    <string name="left">左</string>
+    <string name="right">右</string>
+    <string name="above">上</string>
+    <string name="below">下</string>
+    <string name="uiDesigner">UI设计师</string>
 </resources>
