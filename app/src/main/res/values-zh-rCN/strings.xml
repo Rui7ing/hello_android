@@ -12,4 +12,6 @@
     <string name="button_8">按钮 8</string>
     <string name="button_9">按钮 9</string>
     <string name="button_10">按钮 10</string>
+    <string name="signup">注册</string>
+    <string name="login">登陆</string>
 </resources>
