@@ -1,6 +1,125 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#ffffff">
+
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="148.9dp"
+        android:layout_height="30.3dp"
+        android:layout_marginTop="88dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/fill_1" />
+
+    <EditText
+        android:id="@+id/username"
+        android:layout_width="250dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="77.7dp"
+        android:background="@drawable/input_text"
+        android:inputType="text"
+        android:text="Username"
+        android:textColor="@color/inputText"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/logo" />
+
+    <EditText
+        android:id="@+id/password"
+        android:layout_width="250dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/input_text"
+        android:inputType="text"
+        android:text="Password"
+        android:textColor="@color/inputText"
+        android:textSize="12sp"
+        app:layout_constraintStart_toStartOf="@+id/username"
+        app:layout_constraintTop_toBottomOf="@+id/username" />
+
+    <CheckBox
+        android:id="@+id/rememberMe"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="22.5dp"
+        android:checked="true"
+        android:text="Remember me"
+        android:textSize="12sp"
+        app:layout_constraintStart_toStartOf="@+id/password"
+        app:layout_constraintTop_toBottomOf="@+id/password" />
+
+    <TextView
+        android:id="@+id/forgotPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Forgot password?"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@+id/rememberMe"
+        app:layout_constraintEnd_toEndOf="@+id/password"
+        app:layout_constraintTop_toTopOf="@+id/rememberMe" />
+
+    <android.widget.Button
+        android:id="@+id/login"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="22.5dp"
+        android:background="@drawable/login_button"
+        android:text="Login"
+        android:textAllCaps="false"
+        android:textColor="@color/inputText"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="@+id/password"
+        app:layout_constraintStart_toStartOf="@+id/password"
+        app:layout_constraintTop_toBottomOf="@+id/forgotPassword" />
+
+
+    <TextView
+        android:id="@+id/connect"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="26.5dp"
+        android:text="or connect with"
+        android:textColor="@color/inputText"
+        app:layout_constraintEnd_toEndOf="@+id/login"
+        app:layout_constraintStart_toStartOf="@+id/login"
+        app:layout_constraintTop_toBottomOf="@+id/login" />
+
+
+    <ImageView
+        android:id="@+id/facebook"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="29.5dp"
+        app:layout_constraintStart_toStartOf="@+id/login"
+        app:layout_constraintTop_toBottomOf="@+id/connect"
+        app:srcCompat="@drawable/fb" />
+
+    <ImageView
+        android:id="@+id/twitter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="29.5dp"
+        app:layout_constraintEnd_toEndOf="@+id/login"
+        app:layout_constraintTop_toBottomOf="@+id/connect"
+        app:srcCompat="@drawable/tw" />
+
+    <android.widget.Button
+        android:id="@+id/signUp"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="85.5dp"
+        android:background="@drawable/sign_up_with_email_button"
+        android:text="Sign Up with E-mail"
+        android:textAllCaps="false"
+        android:textColor="@color/loginButton"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="@+id/login"
+        app:layout_constraintStart_toStartOf="@+id/login"
+        app:layout_constraintTop_toBottomOf="@+id/twitter" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
