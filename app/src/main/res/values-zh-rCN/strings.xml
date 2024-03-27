@@ -2,7 +2,7 @@
 <resources>
     <string name="app_name">rq-demo</string>
     <string name="title">Android 练习</string>
-    <string name="button_1">按钮 1</string>
+    <string name="button_1">约束布局</string>
     <string name="button_2">按钮 2</string>
     <string name="button_3">按钮 3</string>
     <string name="button_4">按钮 4</string>

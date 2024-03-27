@@ -46,6 +46,9 @@ class MainActivity : AppCompatActivity() {
                 it.layoutParams = layoutParams
                 it.background = drawable
             }
+            if (i == 1) {
+                button.setOnClickListener { setContentView(R.layout.constraint_layout) }
+            }
             layout.addView(button)
         }
     }
