@@ -49,6 +49,9 @@ class MainActivity : AppCompatActivity() {
             if (i == 1) {
                 button.setOnClickListener { setContentView(R.layout.constraint_layout) }
             }
+            if (i == 2) {
+                button.setOnClickListener { setContentView(R.layout.login_layout) }
+            }
             layout.addView(button)
         }
     }
