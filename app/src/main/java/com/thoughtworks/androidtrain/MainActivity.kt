@@ -1,5 +1,6 @@
 package com.thoughtworks.androidtrain
 
+import android.content.Intent
 import android.content.res.ColorStateList
 import android.graphics.Color
 import android.graphics.drawable.GradientDrawable
@@ -46,13 +47,17 @@ class MainActivity : AppCompatActivity() {
                 it.layoutParams = layoutParams
                 it.background = drawable
             }
-            if (i == 1) {
-                button.setOnClickListener { setContentView(R.layout.constraint_layout) }
-            }
-            if (i == 2) {
-                button.setOnClickListener { setContentView(R.layout.login_layout) }
+            when (i) {
+                1 -> button.setOnClickListener { jumpToView(ConstraintActivity()) }
+                2 -> button.setOnClickListener { jumpToView(LoginActivity()) }
+                else -> {}
             }
             layout.addView(button)
         }
+    }
+
+    private fun jumpToView(activity : AppCompatActivity) {
+        val intent = Intent(this, activity::class.java)
+        startActivity(intent)
     }
 }
