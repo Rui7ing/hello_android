@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="login_button">8dp</dimen>
+    <dimen name="sign_up_button">25dp</dimen>
+</resources>

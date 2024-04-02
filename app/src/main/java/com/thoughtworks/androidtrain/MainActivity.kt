@@ -22,8 +22,6 @@ const val PICK_CONTACT_REQUEST = 1
 
 class MainActivity : AppCompatActivity() {
 
-    private val radius = 20f
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -40,7 +38,7 @@ class MainActivity : AppCompatActivity() {
         val layout = findViewById<LinearLayout>(R.id.linearLayoutButtons)
 
         val drawable = GradientDrawable()
-        drawable.cornerRadius = radius
+        drawable.cornerRadius = resources.getDimension(R.dimen.login_button)
         drawable.color = ColorStateList.valueOf(Color.GRAY)
 
         for (i in 1..10) {

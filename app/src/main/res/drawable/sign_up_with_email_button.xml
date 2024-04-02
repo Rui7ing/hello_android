@@ -2,8 +2,8 @@
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
     <item>
         <shape>
-            <solid android:color="#1f4ba5" />
-            <corners android:radius="25dp" />
+            <solid android:color="@color/loginButton" />
+            <corners android:radius="@dimen/sign_up_button" />
         </shape>
     </item>
 
@@ -13,7 +13,7 @@
         android:top="1dp"
         android:bottom="1dp">
         <shape>
-            <corners android:radius="25dp" />
+            <corners android:radius="@dimen/sign_up_button" />
             <solid android:color="#ffff" />
         </shape>
     </item>
