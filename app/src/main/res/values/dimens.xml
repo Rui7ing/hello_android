@@ -2,4 +2,5 @@
 <resources>
     <dimen name="login_button">8dp</dimen>
     <dimen name="sign_up_button">25dp</dimen>
+    <dimen name="fragment_layout">241dp</dimen>
 </resources>
