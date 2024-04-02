@@ -6,7 +6,7 @@
     <string name="button_2">登陆布局</string>
     <string name="button_3">选择联系人</string>
     <string name="button_4">语言选择</string>
-    <string name="button_5">按钮 5</string>
+    <string name="button_5">RecyclerView</string>
     <string name="button_6">按钮 6</string>
     <string name="button_7">按钮 7</string>
     <string name="button_8">按钮 8</string>

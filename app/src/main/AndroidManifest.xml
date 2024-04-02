@@ -24,6 +24,7 @@
         <activity android:name=".LoginActivity" />
         <activity android:name=".ConstraintActivity" />
         <activity android:name=".LanguageSelectionActivity" />
+        <activity android:name=".TweetsActivity" />
     </application>
 
 </manifest>
