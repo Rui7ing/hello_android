@@ -7,8 +7,8 @@ data class Tweet(
     val images: List<Image>,
     val sender: Sender,
     val comments: List<Comment>,
-    val error: String,
-    @SerializedName("unknown error") var unknownError: String
+    val error: String?,
+    @SerializedName("unknown error") var unknownError: String?
 
 ) {
     override fun toString(): String {
