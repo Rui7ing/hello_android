@@ -10,10 +10,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.thoughtworks.androidtrain.R
 import com.thoughtworks.androidtrain.model.Tweet
 
+const val TWEET_TYPE = 0
+const val BOTTOM_TYPE = 1
+
 class TweetAdapter(
     private val tweets: List<Tweet>,
     private val context : Context
-) : RecyclerView.Adapter<TweetAdapter.TweetViewHolder>() {
+) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private var layout : LayoutInflater = LayoutInflater.from(context)
 
@@ -24,16 +27,32 @@ class TweetAdapter(
         var avatar : ImageView = itemView.findViewById(R.id.avatar)
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TweetViewHolder {
-        return TweetViewHolder(layout.inflate(R.layout.tweet_item, parent, false))
+    class BottomViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+        return when(viewType) {
+            BOTTOM_TYPE -> BottomViewHolder(layout.inflate(R.layout.bottom_item, parent, false))
+            else -> TweetViewHolder(layout.inflate(R.layout.tweet_item, parent, false))
+        }
     }
 
-    override fun getItemCount(): Int = tweets.size
+    override fun getItemCount(): Int = tweets.size + 1
 
-    override fun onBindViewHolder(holder: TweetViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+        if (position == tweets.size ){
+            return
+        }
+        holder as TweetViewHolder
         val tweet = tweets[position]
         holder.nick.text = tweet.sender.nick
         holder.content.text = tweet.content
+    }
+
+    override fun getItemViewType(position: Int): Int {
+        return when (position) {
+            itemCount - 1 -> BOTTOM_TYPE
+            else ->TWEET_TYPE
+        }
     }
 
 }

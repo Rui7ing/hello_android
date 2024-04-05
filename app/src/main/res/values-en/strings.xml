@@ -14,4 +14,5 @@
     <string name="button_10">button 10</string>
     <string name="signup">Signup</string>
     <string name="login">Login</string>
+    <string name="bottom_text">no more</string>
 </resources>
