@@ -25,8 +25,7 @@ class TweetAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TweetViewHolder {
-        val view = layout.inflate(R.layout.tweet_item, parent, false)
-        return TweetViewHolder(view)
+        return TweetViewHolder(layout.inflate(R.layout.tweet_item, parent, false))
     }
 
     override fun getItemCount(): Int = tweets.size

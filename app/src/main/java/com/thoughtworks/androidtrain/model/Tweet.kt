@@ -14,4 +14,6 @@ data class Tweet(
     override fun toString(): String {
         return "content $content \n"
     }
+
+    fun isValid(): Boolean = error.isNullOrEmpty() && unknownError.isNullOrEmpty()
 }
