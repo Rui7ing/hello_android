@@ -57,6 +57,7 @@ class MainActivity : AppCompatActivity() {
                 3 -> button.setOnClickListener { implicitJump() }
                 4 -> button.setOnClickListener { jumpToView(LanguageSelectionActivity()) }
                 5 -> button.setOnClickListener { jumpToView(TweetsActivity()) }
+                6 -> button.setOnClickListener { jumpToView(ThreadActivity()) }
                 else -> {}
             }
             layout.addView(button)
