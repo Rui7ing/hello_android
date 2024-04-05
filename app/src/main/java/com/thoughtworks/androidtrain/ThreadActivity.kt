@@ -14,8 +14,7 @@ class ThreadActivity : AppCompatActivity() {
         setContentView(R.layout.thread_layout)
         button.setOnClickListener {
             button.isClickable = false
-            val someTask = SomeTask(button)
-            someTask.execute()
+            SomeTask(button).execute()
         }
     }
 
