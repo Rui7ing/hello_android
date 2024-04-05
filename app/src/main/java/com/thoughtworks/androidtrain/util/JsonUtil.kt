@@ -1,8 +1,11 @@
 package com.thoughtworks.androidtrain.util;
 
+import android.content.res.Resources
 import com.google.gson.Gson
 import com.thoughtworks.androidtrain.model.Tweet
 import org.json.JSONArray
+import java.io.ByteArrayOutputStream
+import java.io.IOException
 
 class JsonUtil {
 
@@ -288,16 +291,30 @@ class JsonUtil {
         ]
     """.trimIndent()
 
+    fun getTweetListFromJsonStr(string: String): ArrayList<Tweet> {
 
-    fun getTweetList(): ArrayList<Tweet> {
         val list = ArrayList<Tweet>()
-        val data = JSONArray(jsonStr)
+        val data = JSONArray(string)
         val gson = Gson()
         for (i in 0..<data.length()) {
             val tweet: Tweet = gson.fromJson(data.optJSONObject(i).toString(), Tweet::class.java)
             list.add(tweet)
         }
         return list
+    }
+
+    fun getJsonStr(resources: Resources, resourceId: Int): String {
+        return try {
+            val inputStream = resources.openRawResource(resourceId)
+            val outputStream = ByteArrayOutputStream()
+            do {
+                outputStream.write(inputStream.readBytes())
+            } while (inputStream.read() != -1)
+            inputStream.close()
+            outputStream.toString()
+        } catch (e: IOException) {
+            ""
+        }
     }
 
 

@@ -13,8 +13,11 @@ import com.thoughtworks.androidtrain.util.JsonUtil
 class TweetsActivity : AppCompatActivity() {
 
     private val recyclerView: RecyclerView by lazy { findViewById(R.id.recyclerView) }
-    private val tweets: List<Tweet> by lazy { JsonUtil().getTweetList() }
-    private val refresh : SwipeRefreshLayout by lazy { findViewById(R.id.swiperefresh) }
+    private val tweets: List<Tweet> by lazy {
+        val tweetsJsonStr = JsonUtil().getJsonStr(resources, R.raw.tweets)
+        JsonUtil().getTweetListFromJsonStr(tweetsJsonStr)
+    }
+    private val refresh: SwipeRefreshLayout by lazy { findViewById(R.id.swiperefresh) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,7 +28,7 @@ class TweetsActivity : AppCompatActivity() {
     private fun initEvent() {
         recyclerView.adapter = TweetAdapter(tweets.filter { it.isValid() }, this)
         recyclerView.layoutManager = LinearLayoutManager(this)
-        
+
         refresh.setOnRefreshListener {
             recyclerView.adapter = TweetAdapter(tweets.shuffled().filter { it.isValid() }, this)
             Handler().postDelayed({ refresh.isRefreshing = false }, 2000)

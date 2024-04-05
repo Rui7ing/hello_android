@@ -40,7 +40,7 @@ class TweetAdapter(
     override fun getItemCount(): Int = tweets.size + 1
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        if (position == tweets.size) {
+        if (holder is BottomViewHolder) {
             return
         }
         if (holder is TweetViewHolder) {
