@@ -17,4 +17,5 @@
         object-oriented programming language that is designed to have as few implementation dependencies as possible.</string>
     <string name="android_fragment_text" translatable="false">Android is a mobile operating system based on a modified version of the Linux kernel and other open source software, designed primarily for touchscreen mobile devices such as smartphones and tablets.</string>
     <string name="bottom_text">no more</string>
+    <string name="hintText" translatable="false">提示信息: \n点击知道了不再提示</string>
 </resources>
