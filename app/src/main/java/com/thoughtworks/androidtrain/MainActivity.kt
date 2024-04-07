@@ -17,6 +17,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.thoughtworks.androidtrain.util.PermissionUtil
+import kotlin.reflect.KClass
 
 const val PICK_CONTACT_REQUEST = 1
 
@@ -52,13 +53,13 @@ class MainActivity : AppCompatActivity() {
                 it.background = drawable
             }
             when (i) {
-                1 -> button.setOnClickListener { jumpToView(ConstraintActivity()) }
-                2 -> button.setOnClickListener { jumpToView(LoginActivity()) }
+                1 -> button.setOnClickListener { jumpToView(ConstraintActivity::class) }
+                2 -> button.setOnClickListener { jumpToView(LoginActivity::class) }
                 3 -> button.setOnClickListener { implicitJump() }
-                4 -> button.setOnClickListener { jumpToView(LanguageSelectionActivity()) }
-                5 -> button.setOnClickListener { jumpToView(TweetsActivity()) }
-                6 -> button.setOnClickListener { jumpToView(ThreadActivity()) }
-                7 -> button.setOnClickListener { jumpToView(DataStoreActivity()) }
+                4 -> button.setOnClickListener { jumpToView(LanguageSelectionActivity::class) }
+                5 -> button.setOnClickListener { jumpToView(TweetsActivity::class) }
+                6 -> button.setOnClickListener { jumpToView(ThreadActivity::class) }
+                7 -> button.setOnClickListener { jumpToView(DataStoreActivity::class) }
                 else -> {}
             }
             layout.addView(button)
@@ -71,8 +72,8 @@ class MainActivity : AppCompatActivity() {
         startActivityForResult(intent, PICK_CONTACT_REQUEST)
     }
 
-    private fun jumpToView(activity: AppCompatActivity) {
-        val intent = Intent(this, activity::class.java)
+    private fun <T : AppCompatActivity> jumpToView(activityClazz: KClass<T>) {
+        val intent = Intent(this, activityClazz.java)
         startActivity(intent)
     }
 
