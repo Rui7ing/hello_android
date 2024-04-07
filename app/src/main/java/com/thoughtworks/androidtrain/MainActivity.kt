@@ -1,7 +1,6 @@
 package com.thoughtworks.androidtrain
 
 import android.Manifest.permission.READ_CONTACTS
-import android.app.Activity
 import android.content.Intent
 import android.content.res.ColorStateList
 import android.database.Cursor
@@ -72,7 +71,7 @@ class MainActivity : AppCompatActivity() {
         startActivityForResult(intent, PICK_CONTACT_REQUEST)
     }
 
-    private fun jumpToView(activity: Activity) {
+    private fun jumpToView(activity: AppCompatActivity) {
         val intent = Intent(this, activity::class.java)
         startActivity(intent)
     }
