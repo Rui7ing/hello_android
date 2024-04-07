@@ -59,6 +59,7 @@ dependencies {
     implementation(libs.gson)
     implementation(libs.androidx.swiperefreshlayout)
     implementation(libs.coil)
+    implementation(libs.androidx.lifecycle.viewmodel.ktx)
     implementation(libs.androidx.datastore.preferences)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
