@@ -93,13 +93,14 @@ class MainActivity : AppCompatActivity() {
                 null,
                 null
             )
-            cursor!!.moveToNext()
-            val displayNameIndex = cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME)
-            val contactName = cursor.getString(displayNameIndex)
-            val contactIdIndex = cursor.getColumnIndex(ContactsContract.Contacts._ID)
-            val phoneNum = getPhoneNumber(cursor, contactIdIndex)
-            cursor.close()
-            Toast.makeText(this, "$contactName $phoneNum", Toast.LENGTH_SHORT).show()
+            cursor.use {
+                cursor!!.moveToNext()
+                val displayNameIndex = cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME)
+                val contactName = cursor.getString(displayNameIndex)
+                val contactIdIndex = cursor.getColumnIndex(ContactsContract.Contacts._ID)
+                val phoneNum = getPhoneNumber(cursor, contactIdIndex)
+                Toast.makeText(this, "$contactName $phoneNum", Toast.LENGTH_SHORT).show()
+            }
         }
     }
 
@@ -113,8 +114,10 @@ class MainActivity : AppCompatActivity() {
             null,
             null
         )
-        phoneCursor!!.moveToNext()
-        val phoneIndex = phoneCursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER)
-        return phoneCursor.getString(phoneIndex)
+        phoneCursor.use {
+            phoneCursor!!.moveToNext()
+            val phoneIndex = phoneCursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER)
+            return phoneCursor.getString(phoneIndex)
+        }
     }
 }
