@@ -1,7 +1,6 @@
 package com.thoughtworks.androidtrain.adapter
 
 import android.content.Context
-import android.os.AsyncTask
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -44,30 +43,18 @@ class TweetAdapter(
         if (position == tweets.size) {
             return
         }
-        holder as TweetViewHolder
-        val tweet = tweets[position]
-        holder.nick.text = tweet.sender.nick
-        holder.content.text = tweet.content
-        LoadAvatarTask(holder, tweet.sender.avatar).execute()
+        if (holder is TweetViewHolder) {
+            val tweet = tweets[position]
+            holder.nick.text = tweet.sender.nick
+            holder.content.text = tweet.content
+            holder.avatar.load(tweet.sender.avatar)
+        }
     }
 
     override fun getItemViewType(position: Int): Int {
         return when (position) {
             itemCount - 1 -> BOTTOM_TYPE
             else -> TWEET_TYPE
-        }
-    }
-
-    class LoadAvatarTask(
-        private var holder: TweetViewHolder,
-        private var avatarUrl: String
-    ) : AsyncTask<Void, Void, Void>() {
-
-        @Deprecated("Deprecated in Java")
-        override fun doInBackground(vararg p0: Void?): Void? {
-            println(avatarUrl)
-            holder.avatar.load(avatarUrl)
-            return null
         }
     }
 }
