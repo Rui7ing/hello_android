@@ -16,6 +16,7 @@ activity = "1.8.0"
 constraintlayout = "2.1.4"
 roomKtx = "2.6.1"
 roomRuntime = "2.6.1"
+rxjava = "3.0.2"
 swiperefreshlayout = "1.2.0-alpha01"
 symbolProcessingApi = "1.9.21-1.0.15"
 
@@ -37,6 +38,7 @@ kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-c
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 androidx-activity = { group = "androidx.activity", name = "activity", version.ref = "activity" }
 androidx-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
+rxjava = { module = "io.reactivex.rxjava3:rxjava", version.ref = "rxjava" }
 symbol-processing-api = { module = "com.google.devtools.ksp:symbol-processing-api", version.ref = "symbolProcessingApi" }
 
 [plugins]

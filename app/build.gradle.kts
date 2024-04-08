@@ -57,6 +57,7 @@ dependencies {
 
     kapt(libs.androidx.room.compiler)
     kapt(libs.androidx.room.ktx)
+    implementation(libs.rxjava)
     implementation(libs.kotlinx.coroutines.core)
     implementation(libs.symbol.processing.api)
     implementation(libs.androidx.core.ktx)
