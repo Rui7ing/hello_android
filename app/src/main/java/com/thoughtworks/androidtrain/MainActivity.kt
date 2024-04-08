@@ -47,8 +47,8 @@ class MainActivity : AppCompatActivity() {
                 val resourceId = resources.getIdentifier("button_$i", "string", packageName)
                 it.text = resources.getText(resourceId)
                 val layoutParams = LinearLayout.LayoutParams(WRAP_CONTENT, WRAP_CONTENT)
-                layoutParams.width = 660
-                layoutParams.topMargin = 16
+                layoutParams.width = resources.getDimension(R.dimen.button_width).toInt()
+                layoutParams.topMargin = resources.getDimension(R.dimen.button_top_margin).toInt()
                 it.layoutParams = layoutParams
                 it.background = drawable
             }
