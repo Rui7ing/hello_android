@@ -12,7 +12,7 @@ import java.io.IOException
 
 private val Context.dataStore by preferencesDataStore("hintData")
 private const val DATA_KEY = "hint"
-class DataStoreManager( context: Context) {
+class HintRepository(context: Context) {
 
     private val dataStore = context.dataStore
 

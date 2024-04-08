@@ -7,29 +7,29 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.lifecycleScope
-import com.thoughtworks.androidtrain.repositories.DataStoreManager
+import com.thoughtworks.androidtrain.repositories.HintRepository
 import kotlinx.coroutines.launch
 
 class DataStoreActivity : AppCompatActivity() {
 
-    private lateinit var dataStoreManager: DataStoreManager
+    private lateinit var hintRepository: HintRepository
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.data_store_layout)
         val button = findViewById<Button>(R.id.knowButton)
-        dataStoreManager = DataStoreManager(this)
+        hintRepository = HintRepository(this)
 
         checkIsHintShown(button)
         button.setOnClickListener {
             hideHint(button)
-            lifecycleScope.launch { dataStoreManager.setIsHintShown(true) }
+            lifecycleScope.launch { hintRepository.setIsHintShown(true) }
         }
 
     }
 
     private fun checkIsHintShown(button: Button) {
-        dataStoreManager.getIsHintShown().asLiveData().observe(this) {
+        hintRepository.getIsHintShown().asLiveData().observe(this) {
             if (it) { hideHint(button) }
         }
     }
