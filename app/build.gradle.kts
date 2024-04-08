@@ -1,6 +1,8 @@
 plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsKotlinAndroid)
+    id("androidx.room") version "2.6.1" apply false
+    kotlin("kapt")
 }
 
 android {
@@ -50,7 +52,13 @@ android {
 }
 
 dependencies {
+    implementation(libs.androidx.room.runtime)
+    annotationProcessor(libs.androidx.room.compiler)
 
+    kapt(libs.androidx.room.compiler)
+    kapt(libs.androidx.room.ktx)
+    implementation(libs.kotlinx.coroutines.core)
+    implementation(libs.symbol.processing.api)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
