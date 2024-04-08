@@ -2,11 +2,11 @@ package com.thoughtworks.androidtrain.model
 
 import com.google.gson.annotations.SerializedName
 
-data class Tweet(
+data class TweetModel(
     val content: String,
-    val images: List<Image>,
-    val sender: Sender,
-    val comments: List<Comment>,
+    val images: List<ImageModel>,
+    val sender: SenderModel,
+    val comments: List<CommentModel>,
     val error: String?,
     @SerializedName("unknown error") var unknownError: String?
 

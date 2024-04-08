@@ -1,6 +1,6 @@
 package com.thoughtworks.androidtrain.model
 
-data class Sender (
+data class SenderModel (
     var userName: String,
     var nick: String,
     var avatar: String,

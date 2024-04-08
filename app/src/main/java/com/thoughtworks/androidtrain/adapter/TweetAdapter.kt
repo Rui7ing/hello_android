@@ -9,13 +9,13 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.thoughtworks.androidtrain.R
-import com.thoughtworks.androidtrain.model.Tweet
+import com.thoughtworks.androidtrain.model.TweetModel
 
 const val TWEET_TYPE = 0
 const val BOTTOM_TYPE = 1
 
 class TweetAdapter(
-    private val tweets: List<Tweet>,
+    private val tweetModels: List<TweetModel>,
     private val context: Context
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
@@ -37,14 +37,14 @@ class TweetAdapter(
         }
     }
 
-    override fun getItemCount(): Int = tweets.size + 1
+    override fun getItemCount(): Int = tweetModels.size + 1
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         if (holder is BottomViewHolder) {
             return
         }
         if (holder is TweetViewHolder) {
-            val tweet = tweets[position]
+            val tweet = tweetModels[position]
             holder.nick.text = tweet.sender.nick
             holder.content.text = tweet.content
             holder.avatar.load(tweet.sender.avatar)

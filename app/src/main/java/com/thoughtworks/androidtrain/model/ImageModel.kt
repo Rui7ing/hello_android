@@ -1,4 +1,4 @@
 package com.thoughtworks.androidtrain.model;
 
 
-data class Image (val url: String)
+data class ImageModel (val url: String)
