@@ -31,17 +31,16 @@ abstract class ApplicationDatabase : RoomDatabase() {
     companion object {
         @Volatile
         private var inastance: ApplicationDatabase? = null
-        private val LOCK = Any()
 
         operator fun invoke(context: Context): ApplicationDatabase {
-            return inastance ?: synchronized(LOCK) {
+            return inastance ?: synchronized(this) {
                 inastance ?: buildDatabase(context).also { inastance = it }
             }
         }
 
         private fun buildDatabase(context: Context) =
             Room.databaseBuilder(context, ApplicationDatabase::class.java, DB_NAME)
-                .fallbackToDestructiveMigration()
+                .allowMainThreadQueries()
                 .build()
     }
 }

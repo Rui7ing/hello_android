@@ -5,5 +5,5 @@ import kotlinx.coroutines.flow.Flow
 
 
 interface DataSource {
-    fun fetchTweets(): Flow<List<Tweet>>
+    suspend fun fetchTweets(): Flow<List<Tweet>>
 }

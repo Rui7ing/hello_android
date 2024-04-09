@@ -15,7 +15,7 @@ const val TWEET_TYPE = 0
 const val BOTTOM_TYPE = 1
 
 class TweetAdapter(
-    private val tweetModels: List<Tweet>,
+    var tweets: List<Tweet>,
     private val context: Context
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
@@ -26,6 +26,12 @@ class TweetAdapter(
         var nick: TextView = itemView.findViewById(R.id.nick)
         var content: TextView = itemView.findViewById(R.id.content)
         var avatar: ImageView = itemView.findViewById(R.id.avatar)
+
+        fun bind(tweet: Tweet) {
+            nick.text = tweet.sender?.nick
+            content.text = tweet.content
+            avatar.load(tweet.sender?.avatar)
+        }
     }
 
     class BottomViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
@@ -37,17 +43,15 @@ class TweetAdapter(
         }
     }
 
-    override fun getItemCount(): Int = tweetModels.size + 1
+    override fun getItemCount(): Int = tweets.size + 1
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         if (holder is BottomViewHolder) {
             return
         }
         if (holder is TweetViewHolder) {
-            val tweet = tweetModels[position]
-            holder.nick.text = tweet.sender?.nick
-            holder.content.text = tweet.content
-            holder.avatar.load(tweet.sender?.avatar)
+            val tweet = tweets[position]
+            holder.bind(tweet)
         }
     }
 
