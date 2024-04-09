@@ -5,12 +5,14 @@ import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.os.Handler
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.thoughtworks.androidtrain.adapter.TweetAdapter
+import com.thoughtworks.androidtrain.api.RetrofitBuilder.retrofit
 import com.thoughtworks.androidtrain.databases.ApplicationDatabase
 import com.thoughtworks.androidtrain.entity.Tweet
 import com.thoughtworks.androidtrain.repositories.TweetRepository
@@ -29,10 +31,7 @@ class TweetsActivity : AppCompatActivity() {
     private val tweetAdapter: TweetAdapter by lazy { TweetAdapter(emptyList(), this) }
     private val database by lazy { ApplicationDatabase(this) }
     private val sp: SharedPreferences by lazy {
-        this.getSharedPreferences(
-            DATA_INPUT_KEY,
-            Context.MODE_PRIVATE
-        )
+        this.getSharedPreferences(DATA_INPUT_KEY, Context.MODE_PRIVATE)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -44,9 +43,16 @@ class TweetsActivity : AppCompatActivity() {
 
     private fun initTweets() {
 
-        if (!sp.getBoolean(DATA_INPUT_KEY, false)) {
-            lifecycleScope.launch { database.tweetDao().insertAll(tweets) }
-            saveIsJsonDataInserted()
+        lifecycleScope.launch {
+            try {
+                val response = retrofit.fetchTweets()
+                if (response.isSuccessful && !sp.getBoolean(DATA_INPUT_KEY, false)) {
+                    lifecycleScope.launch { database.tweetDao().insertAll(tweets) }
+                    saveIsJsonDataInserted()
+                }
+            } catch (e: Exception) {
+                Toast.makeText(this@TweetsActivity, e.message, Toast.LENGTH_SHORT).show()
+            }
         }
 
         lifecycleScope.launch {
