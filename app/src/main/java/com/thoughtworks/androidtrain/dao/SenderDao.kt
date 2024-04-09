@@ -15,7 +15,7 @@ interface SenderDao {
     fun loadAllByIds(ids: IntArray): List<Sender>
 
     @Insert
-    fun insertAll(vararg sender: Sender)
+    fun insertAll(senders: List<Sender>)
 
     @Delete
     fun delete(sender: Sender)

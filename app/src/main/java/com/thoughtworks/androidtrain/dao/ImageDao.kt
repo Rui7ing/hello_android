@@ -16,7 +16,7 @@ interface ImageDao {
     fun loadAllByIds(ids: IntArray): List<Image>
 
     @Insert
-    fun insertAll(vararg image: Image)
+    fun insertAll(image: List<Image>)
 
     @Delete
     fun delete(image: Image)

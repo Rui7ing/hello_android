@@ -2,7 +2,7 @@ package com.thoughtworks.androidtrain.util;
 
 import android.content.res.Resources
 import com.google.gson.Gson
-import com.thoughtworks.androidtrain.model.TweetModel
+import com.thoughtworks.androidtrain.entity.Tweet
 import org.json.JSONArray
 import java.io.ByteArrayOutputStream
 import java.io.IOException
@@ -291,13 +291,13 @@ class JsonUtil {
         ]
     """.trimIndent()
 
-    fun getTweetListFromJsonStr(string: String): ArrayList<TweetModel> {
+    fun getTweetListFromJsonStr(string: String): ArrayList<Tweet> {
 
-        val list = ArrayList<TweetModel>()
+        val list = ArrayList<Tweet>()
         val data = JSONArray(string)
         val gson = Gson()
         for (i in 0..<data.length()) {
-            val tweetModel: TweetModel = gson.fromJson(data.optJSONObject(i).toString(), TweetModel::class.java)
+            val tweetModel: Tweet = gson.fromJson(data.optJSONObject(i).toString(), Tweet::class.java)
             list.add(tweetModel)
         }
         return list

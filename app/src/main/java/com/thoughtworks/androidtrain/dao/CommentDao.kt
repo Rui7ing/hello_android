@@ -16,7 +16,7 @@ interface CommentDao {
     fun loadAllByIds(ids: IntArray): List<Comment>
 
     @Insert
-    fun insertAll(vararg comment: Comment)
+    fun insertAll(comments: List<Comment>)
 
     @Delete
     fun delete(comment: Comment)
