@@ -52,6 +52,7 @@ android {
 }
 
 dependencies {
+    implementation(libs.okhttp.coroutines)
     implementation(libs.androidx.room.runtime)
     annotationProcessor(libs.androidx.room.compiler)
 
