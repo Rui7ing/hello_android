@@ -55,6 +55,10 @@ dependencies {
     implementation(libs.androidx.room.runtime)
     annotationProcessor(libs.androidx.room.compiler)
 
+
+    implementation(libs.retrofit)
+    implementation(libs.converter.scalars)
+    implementation(libs.converter.gson)
     kapt(libs.androidx.room.compiler)
     kapt(libs.androidx.room.ktx)
     implementation(libs.rxjava)
