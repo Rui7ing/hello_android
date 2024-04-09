@@ -15,7 +15,7 @@ const val TWEET_TYPE = 0
 const val BOTTOM_TYPE = 1
 
 class TweetAdapter(
-    private val tweets: List<Tweet>,
+    var tweets: List<Tweet>,
     private val context: Context
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 

@@ -6,6 +6,7 @@ import android.content.SharedPreferences
 import android.os.Bundle
 import android.os.Handler
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
@@ -14,7 +15,6 @@ import com.thoughtworks.androidtrain.databases.ApplicationDatabase
 import com.thoughtworks.androidtrain.entity.Tweet
 import com.thoughtworks.androidtrain.repositories.TweetRepository
 import com.thoughtworks.androidtrain.util.JsonUtil
-import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
 private const val DATA_INPUT_KEY = "isJsonDataInserted"
@@ -26,6 +26,7 @@ class TweetsActivity : AppCompatActivity() {
         JsonUtil().getTweetListFromJsonStr(tweetsJsonStr)
     }
     private val refresh: SwipeRefreshLayout by lazy { findViewById(R.id.swiperefresh) }
+    private val tweetAdapter: TweetAdapter by lazy { TweetAdapter(emptyList(), this) }
     private val database by lazy { ApplicationDatabase(this) }
     private val sp: SharedPreferences by lazy {
         this.getSharedPreferences(
@@ -37,19 +38,20 @@ class TweetsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.tweets_layout)
-        initEvent()
         initTweets()
+        initUI()
     }
 
     private fun initTweets() {
+
         if (!sp.getBoolean(DATA_INPUT_KEY, false)) {
-            GlobalScope.launch { database.tweetDao().insertAll(tweets) }
+            lifecycleScope.launch { database.tweetDao().insertAll(tweets) }
             saveIsJsonDataInserted()
         }
-        this.let {
-            GlobalScope.launch {
-                TweetRepository(database.tweetDao()).fetchTweets()
-                    .collect { data -> TweetAdapter(data, it) }
+
+        lifecycleScope.launch {
+            TweetRepository(database.tweetDao()).fetchTweets().collect { tweetList ->
+                tweetAdapter.tweets = tweetList.filter { it.isValid() }
             }
         }
     }
@@ -61,12 +63,13 @@ class TweetsActivity : AppCompatActivity() {
         editor.apply()
     }
 
-    private fun initEvent() {
-        recyclerView.adapter = TweetAdapter(tweets.filter { it.isValid() }, this)
+    private fun initUI() {
+        recyclerView.adapter = tweetAdapter
         recyclerView.layoutManager = LinearLayoutManager(this)
 
         refresh.setOnRefreshListener {
-            recyclerView.adapter = TweetAdapter(tweets.shuffled().filter { it.isValid() }, this)
+            tweetAdapter.tweets = tweetAdapter.tweets.shuffled()
+            recyclerView.adapter = tweetAdapter
             Handler().postDelayed({ refresh.isRefreshing = false }, 2000)
         }
     }
