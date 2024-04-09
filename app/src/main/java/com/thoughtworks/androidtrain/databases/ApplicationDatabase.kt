@@ -4,6 +4,10 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.room.TypeConverters
+import com.thoughtworks.androidtrain.converter.CommentConverter
+import com.thoughtworks.androidtrain.converter.ImageConverter
+import com.thoughtworks.androidtrain.converter.SenderConverter
 import com.thoughtworks.androidtrain.dao.CommentDao
 import com.thoughtworks.androidtrain.dao.ImageDao
 import com.thoughtworks.androidtrain.dao.SenderDao
@@ -13,9 +17,11 @@ import com.thoughtworks.androidtrain.entity.Image
 import com.thoughtworks.androidtrain.entity.Sender
 import com.thoughtworks.androidtrain.entity.Tweet
 
-@Database(
-    entities = [Tweet::class, Image::class, Sender::class, Comment::class],
-    version = 1)
+private const val DB_NAME = "android_train_db"
+
+@Database(entities = [Tweet::class, Image::class, Sender::class, Comment::class],
+    version = 1, exportSchema = false)
+@TypeConverters(value = [ImageConverter::class, SenderConverter::class, CommentConverter::class])
 abstract class ApplicationDatabase : RoomDatabase() {
     abstract fun tweetDao(): TweetDao
     abstract fun imageDao(): ImageDao
@@ -29,14 +35,13 @@ abstract class ApplicationDatabase : RoomDatabase() {
 
         operator fun invoke(context: Context): ApplicationDatabase {
             return inastance ?: synchronized(LOCK) {
-                inastance ?: buildDatabase(context).also {
-                    inastance = it
-                }
+                inastance ?: buildDatabase(context).also { inastance = it }
             }
         }
 
         private fun buildDatabase(context: Context) =
-            Room.databaseBuilder(context.applicationContext, ApplicationDatabase::class.java, "android_train_db")
+            Room.databaseBuilder(context, ApplicationDatabase::class.java, DB_NAME)
+                .fallbackToDestructiveMigration()
                 .build()
     }
 }
