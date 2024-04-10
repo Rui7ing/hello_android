@@ -7,9 +7,9 @@ private const val BASE_URL = "https://raw.githubusercontent.com/TW-Android-Junio
 
 object RetrofitBuilder {
 
-    val retrofit: TweetController = Retrofit.Builder()
+    val retrofit: ITweetService = Retrofit.Builder()
         .baseUrl(BASE_URL)
         .addConverterFactory(GsonConverterFactory.create())
         .build()
-        .create(TweetController::class.java)
+        .create(ITweetService::class.java)
 }
