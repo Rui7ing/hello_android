@@ -12,6 +12,8 @@ class TweetRepository(private val tweetDao: TweetDao) : DataSource {
     }
 
     suspend fun saveFromRemote() {
-        tweetDao.insertAll(TweetService.fetchTweets().filter { it.isValid() })
+        val tweets = TweetService.fetchTweets().filter { it.isValid() }
+        tweets.forEach(Tweet::generateAndBindId)
+        tweetDao.insertAll(tweets)
     }
 }

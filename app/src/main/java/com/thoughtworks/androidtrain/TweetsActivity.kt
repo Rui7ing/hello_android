@@ -25,8 +25,8 @@ class TweetsActivity : AppCompatActivity() {
 
     private fun initTweets() {
         tweetViewModel.pullData()
-        tweetViewModel.tweets.observe(this) {
-            tweetAdapter.tweets = it
+        tweetViewModel.tweets.observe(this) { tweets ->
+            tweetAdapter.tweets = tweets.sortedByDescending { it.date }
         }
     }
 
@@ -35,7 +35,7 @@ class TweetsActivity : AppCompatActivity() {
         recyclerView.layoutManager = LinearLayoutManager(this)
 
         refresh.setOnRefreshListener {
-            tweetAdapter.tweets = tweetAdapter.tweets.shuffled()
+            tweetAdapter.tweets = tweetAdapter.tweets.sortedByDescending { it.date }
             recyclerView.adapter = tweetAdapter
             Handler().postDelayed({ refresh.isRefreshing = false }, 2000)
         }
