@@ -9,7 +9,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.thoughtworks.androidtrain.R
-import com.thoughtworks.androidtrain.entity.Tweet
+import com.thoughtworks.androidtrain.model.entity.Tweet
 
 const val TWEET_TYPE = 0
 const val BOTTOM_TYPE = 1

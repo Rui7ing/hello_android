@@ -5,9 +5,9 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
-import com.thoughtworks.androidtrain.databases.ApplicationDatabase
-import com.thoughtworks.androidtrain.entity.Tweet
-import com.thoughtworks.androidtrain.repositories.TweetRepository
+import com.thoughtworks.androidtrain.model.databases.ApplicationDatabase
+import com.thoughtworks.androidtrain.model.entity.Tweet
+import com.thoughtworks.androidtrain.model.repositories.TweetRepository
 import kotlinx.coroutines.launch
 
 class TweetViewModel(application: Application) : AndroidViewModel(application) {
