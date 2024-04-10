@@ -17,13 +17,12 @@ class TweetViewModel(application: Application) : AndroidViewModel(application) {
     private val tweetRepository: TweetRepository by lazy {
         TweetRepository(ApplicationDatabase(application).tweetDao()) }
 
-    private val _tweets = MutableLiveData<List<Tweet>>()
-    val tweets : LiveData<List<Tweet>> get() = _tweets
+    val tweets = MutableLiveData<List<Tweet>>()
 
     fun pullData() {
         viewModelScope.launch {
             tweetRepository.saveFromRemote()
-            _tweets.postValue(tweetRepository.fetchTweets().first())
+            tweets.postValue(tweetRepository.fetchTweets().first())
         }
     }
 }
