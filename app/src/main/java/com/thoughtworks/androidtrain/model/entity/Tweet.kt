@@ -11,7 +11,7 @@ data class Tweet(
     @ColumnInfo var content: String?,
     @ColumnInfo var images: List<Image>?,
     @ColumnInfo var sender: Sender?,
-    @ColumnInfo var cøomments: List<Comment>?,
+    @ColumnInfo var comments: List<Comment>?,
     @ColumnInfo var error: String?,
     @ColumnInfo @SerializedName("unknown error") var unknownError: String?,
     @ColumnInfo var date: String?,
