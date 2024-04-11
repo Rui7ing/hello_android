@@ -2,27 +2,25 @@ package com.thoughtworks.androidtrain.viewModel
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
-import com.thoughtworks.androidtrain.model.databases.ApplicationDatabase
 import com.thoughtworks.androidtrain.model.entity.Tweet
 import com.thoughtworks.androidtrain.model.repositories.TweetRepository
-import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 
-class TweetViewModel(application: Application) : AndroidViewModel(application) {
-
-    private val tweetRepository: TweetRepository by lazy {
-        TweetRepository(ApplicationDatabase(application).tweetDao()) }
+class TweetViewModel(application: Application, private val tweetRepository: TweetRepository) : AndroidViewModel(application) {
 
     val tweets = MutableLiveData<List<Tweet>>()
+
+    fun fetchTweets(): MutableLiveData<List<Tweet>> {
+        tweets.postValue(tweetRepository.fetchTweets().value)
+        return tweets
+    }
 
     fun pullData() {
         viewModelScope.launch {
             tweetRepository.saveFromRemote()
-            tweets.postValue(tweetRepository.fetchTweets().first())
+            tweets.value = tweetRepository.fetchTweets().value
         }
     }
 }

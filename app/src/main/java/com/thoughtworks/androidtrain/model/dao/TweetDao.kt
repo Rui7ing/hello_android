@@ -1,5 +1,6 @@
 package com.thoughtworks.androidtrain.model.dao
 
+import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
@@ -10,7 +11,7 @@ import com.thoughtworks.androidtrain.model.entity.Tweet
 @Dao
 interface TweetDao {
     @Query("SELECT * FROM tweet")
-    fun getAll(): List<Tweet>
+    fun getAll(): LiveData<List<Tweet>>
 
     @Query("SELECT * FROM tweet WHERE id IN (:ids)")
     fun loadAllByIds(ids: IntArray): List<Tweet>

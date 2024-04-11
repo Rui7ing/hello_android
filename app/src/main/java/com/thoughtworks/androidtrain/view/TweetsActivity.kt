@@ -8,6 +8,8 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.thoughtworks.androidtrain.R
 import com.thoughtworks.androidtrain.adapter.TweetAdapter
+import com.thoughtworks.androidtrain.model.databases.ApplicationDatabase
+import com.thoughtworks.androidtrain.model.repositories.TweetRepository
 import com.thoughtworks.androidtrain.viewModel.TweetViewModel
 
 class TweetsActivity : AppCompatActivity() {
@@ -15,7 +17,8 @@ class TweetsActivity : AppCompatActivity() {
     private val recyclerView: RecyclerView by lazy { findViewById(R.id.recyclerView) }
     private val refresh: SwipeRefreshLayout by lazy { findViewById(R.id.swiperefresh) }
     private val tweetAdapter: TweetAdapter by lazy { TweetAdapter(emptyList(), this) }
-    private val tweetViewModel: TweetViewModel by lazy { TweetViewModel(application) }
+    private val repository: TweetRepository by lazy { TweetRepository(ApplicationDatabase(application).tweetDao()) }
+    private val tweetViewModel: TweetViewModel by lazy { TweetViewModel(application, repository) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
