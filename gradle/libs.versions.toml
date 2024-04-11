@@ -20,6 +20,8 @@ mockitoCore = "5.10.0"
 retrofit = "2.9.0"
 roomKtx = "2.6.1"
 roomRuntime = "2.6.1"
+rules = "1.5.0"
+runner = "1.5.2"
 rxjava = "3.0.2"
 swiperefreshlayout = "1.2.0-alpha01"
 symbolProcessingApi = "1.9.21-1.0.15"
@@ -33,6 +35,8 @@ androidx-lifecycle-viewmodel-ktx = { module = "androidx.lifecycle:lifecycle-view
 androidx-room-compiler = { module = "androidx.room:room-compiler", version.ref = "roomRuntime" }
 androidx-room-ktx = { module = "androidx.room:room-ktx", version.ref = "roomKtx" }
 androidx-room-runtime = { module = "androidx.room:room-runtime", version.ref = "roomRuntime" }
+androidx-rules = { module = "androidx.test:rules", version.ref = "rules" }
+androidx-runner = { module = "androidx.test:runner", version.ref = "runner" }
 androidx-swiperefreshlayout = { module = "androidx.swiperefreshlayout:swiperefreshlayout", version.ref = "swiperefreshlayout" }
 coil = { module = "io.coil-kt:coil", version.ref = "coil" }
 converter-scalars = { module = "com.squareup.retrofit2:converter-scalars", version.ref = "retrofit" }
