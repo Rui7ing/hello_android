@@ -5,6 +5,12 @@ plugins {
     kotlin("kapt")
 }
 
+buildscript {
+    dependencies {
+        classpath(libs.kotlin.gradle.plugin)
+    }
+}
+
 android {
     signingConfigs {
         getByName("debug") {
@@ -49,17 +55,30 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+    buildFeatures {
+        compose = true
+    }
+
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.5.11"
+    }
 }
 
 dependencies {
     implementation(libs.androidx.room.runtime)
-    testImplementation(libs.junit.jupiter)
     annotationProcessor(libs.androidx.room.compiler)
 
+    val composeBom = platform("androidx.compose:compose-bom:2024.04.00")
+    implementation(composeBom)
+    androidTestImplementation(composeBom)
 
+    implementation(libs.androidx.ui)
+    implementation(libs.androidx.activity.compose)
+    implementation(libs.android.material)
     implementation(libs.retrofit)
     implementation(libs.converter.scalars)
     implementation(libs.converter.gson)
+    debugImplementation(libs.androidx.ui.tooling)
     kapt(libs.androidx.room.compiler)
     kapt(libs.androidx.room.ktx)
     implementation(libs.rxjava)
@@ -75,7 +94,9 @@ dependencies {
     implementation(libs.coil)
     implementation(libs.androidx.lifecycle.viewmodel.ktx)
     implementation(libs.androidx.datastore.preferences)
+    implementation(libs.androidx.ui.tooling.preview)
     testImplementation(libs.junit)
+    testImplementation(libs.junit.jupiter)
     testImplementation (libs.mockito.core)
     testImplementation(libs.androidx.core.testing)
     androidTestImplementation(libs.androidx.rules)
