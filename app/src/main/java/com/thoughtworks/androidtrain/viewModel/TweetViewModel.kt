@@ -10,17 +10,16 @@ import kotlinx.coroutines.launch
 
 class TweetViewModel(application: Application, private val tweetRepository: TweetRepository) : AndroidViewModel(application) {
 
-    val tweets = MutableLiveData<List<Tweet>>()
+    var tweets = MutableLiveData<List<Tweet>>()
 
     fun fetchTweets(): MutableLiveData<List<Tweet>> {
-        tweets.postValue(tweetRepository.fetchTweets().value)
         return tweets
     }
 
     fun pullData() {
         viewModelScope.launch {
-            tweetRepository.saveFromRemote()
-            tweets.value = tweetRepository.fetchTweets().value
+            val data = tweetRepository.saveFromRemote()
+            tweets.postValue(data)
         }
     }
 }

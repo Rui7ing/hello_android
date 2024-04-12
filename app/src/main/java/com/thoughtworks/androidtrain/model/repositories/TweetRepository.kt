@@ -8,9 +8,10 @@ import com.thoughtworks.androidtrain.model.entity.Tweet
 class TweetRepository(private val tweetDao: TweetDao) : DataSource {
     override fun fetchTweets(): LiveData<List<Tweet>> = tweetDao.getAll()
 
-    suspend fun saveFromRemote() {
+    suspend fun saveFromRemote(): List<Tweet> {
         val tweets = TweetApi.fetchTweets().filter { it.isValid() }
         tweets.forEach(Tweet::generateAndBindId)
         tweetDao.insertAll(tweets)
+        return tweets
     }
 }
