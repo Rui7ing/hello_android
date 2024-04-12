@@ -28,6 +28,7 @@
         <activity android:name=".view.TweetsActivity" />
         <activity android:name=".view.ThreadActivity" />
         <activity android:name=".view.DataStoreActivity" />
+        <activity android:name=".view.TweetsComposeActivity" />
     </application>
 
 </manifest>

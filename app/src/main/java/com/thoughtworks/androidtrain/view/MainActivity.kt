@@ -61,6 +61,7 @@ class MainActivity : AppCompatActivity() {
                 5 -> button.setOnClickListener { jumpToView(TweetsActivity::class) }
                 6 -> button.setOnClickListener { jumpToView(ThreadActivity::class) }
                 7 -> button.setOnClickListener { jumpToView(DataStoreActivity::class) }
+                8 -> button.setOnClickListener { jumpToView(TweetsComposeActivity::class) }
                 else -> {}
             }
             layout.addView(button)
