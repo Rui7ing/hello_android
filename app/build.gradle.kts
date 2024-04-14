@@ -95,6 +95,7 @@ dependencies {
     implementation(libs.androidx.lifecycle.viewmodel.ktx)
     implementation(libs.androidx.datastore.preferences)
     implementation(libs.androidx.ui.tooling.preview)
+    implementation(libs.coil.compose)
     testImplementation(libs.junit)
     testImplementation(libs.junit.jupiter)
     testImplementation (libs.mockito.core)

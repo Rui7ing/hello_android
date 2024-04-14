@@ -1,6 +1,5 @@
 package com.thoughtworks.androidtrain.view.composes
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.ScrollState
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
@@ -10,13 +9,12 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Text
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.rounded.AccountBox
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import coil.compose.AsyncImage
 import com.thoughtworks.androidtrain.model.entity.Tweet
 
 
@@ -34,12 +32,12 @@ fun LoadTweets(tweets: List<Tweet>) {
 @Composable
 fun TweetItem(tweet: Tweet) {
     Row {
-        Image(
+        AsyncImage(
             modifier = Modifier
                 .padding(all = 5.dp)
                 .size(60.dp),
-            imageVector = Icons.Rounded.AccountBox,
-            contentDescription = "avatar"
+            model = tweet.sender?.avatar,
+            contentDescription = null
         )
         Column {
             Text(
